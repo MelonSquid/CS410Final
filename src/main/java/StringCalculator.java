@@ -4,7 +4,17 @@ public class StringCalculator {
         String[] numbersArray = numbers.split(",|\n");
         for (String number : numbersArray) {
             if (!number.trim().isEmpty()) {
-                returnValue += Integer.parseInt(number.trim());
+                int nextInt = Integer.parseInt(number.trim());
+
+                //exception throwing
+                if (nextInt < 0) {
+                    throw new IllegalArgumentException("Negatives not allowed");
+                }
+
+                //ignoring big numbers
+                if(nextInt < 1000) {
+                    returnValue += nextInt;
+                }
             }
         }
         return returnValue;
